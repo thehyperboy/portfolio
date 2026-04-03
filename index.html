@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koushik | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f0e8;
+      --bg-accent: #e5d2bd;
+      --surface: rgba(255, 252, 247, 0.82);
+      --surface-strong: #fffaf4;
+      --text: #1d1a18;
+      --muted: #5f5750;
+      --primary: #b24c2f;
+      --primary-dark: #8e3a22;
+      --border: rgba(29, 26, 24, 0.1);
+      --shadow: 0 20px 45px rgba(73, 43, 23, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(178, 76, 47, 0.18), transparent 28%),
+        radial-gradient(circle at right, rgba(96, 123, 104, 0.16), transparent 25%),
+        linear-gradient(180deg, var(--bg), #fdf8f3);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 28px 6vw 48px;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+
+    .logo,
+    h1,
+    h2,
+    h3 {
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding: 48px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      animation: rise 0.8s ease-out both;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 0.95;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin: 24px 0 0;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .secondary {
+      border: 1px solid var(--border);
+      background: var(--surface-strong);
+    }
+
+    main {
+      padding: 0 6vw 72px;
+    }
+
+    .section {
+      margin-top: 44px;
+    }
+
+    .section-heading {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+
+    .card,
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .details-grid,
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .details-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .skills-grid,
+    .projects-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card h3,
+    .project-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .card p,
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .project-card {
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255, 250, 244, 0.95), rgba(244, 231, 219, 0.88));
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(178, 76, 47, 0.12);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .contact-links a:hover,
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 20px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 42px;
+      }
+
+      .hero-content,
+      .card,
+      .project-card {
+        padding: 22px;
+      }
+
+      h1 {
+        line-height: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Koushik</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Hello, I'm Koushik.</h1>
+      <p class="intro">
+        I am an enthusiastic learner building my path in technology, design, and creative
+        problem-solving. I enjoy growing my skills and creating projects that make an impact.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#contact">Connect With Me</a>
+        <a class="button secondary" href="mailto:kaushik2007.aila@gmail.com">Email Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">About Me</p>
+        <h2>Personal Details</h2>
+      </div>
+      <div class="card details-grid">
+        <div>
+          <h3>Name</h3>
+          <p>Koushik</p>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <p><a href="mailto:kaushik2007.aila@gmail.com">kaushik2007.aila@gmail.com</a></p>
+        </div>
+        <div>
+          <h3>Phone</h3>
+          <p><a href="tel:9391134136">9391134136</a></p>
+        </div>
+        <div>
+          <h3>Address</h3>
+          <p>Boduppal, Medchal-Malkajgiri, Telangana</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading">
+        <p class="eyebrow">Skills</p>
+        <h2>What I Bring</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="card">
+          <h3>Frontend Basics</h3>
+          <p>HTML, CSS, responsive layouts, and building clean user interfaces.</p>
+        </article>
+        <article class="card">
+          <h3>Creative Thinking</h3>
+          <p>Designing ideas clearly and turning concepts into practical project structures.</p>
+        </article>
+        <article class="card">
+          <h3>Communication</h3>
+          <p>Collaborating with others, learning quickly, and presenting work with confidence.</p>
+        </article>
+        <article class="card">
+          <h3>Problem Solving</h3>
+          <p>Approaching challenges step by step and staying consistent while learning.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">Projects</p>
+        <h2>Featured Work</h2>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card">
+          <span class="tag">Project 01</span>
+          <h3>Personal Portfolio Website</h3>
+          <p>
+            A portfolio website to introduce myself, share my skills, and make it easy for
+            others to connect with me.
+          </p>
+        </article>
+        <article class="project-card">
+          <span class="tag">Project 02</span>
+          <h3>Student Learning Page</h3>
+          <p>
+            A concept page designed to highlight learning goals, subjects, and future
+            achievements in a modern way.
+          </p>
+        </article>
+        <article class="project-card">
+          <span class="tag">Project 03</span>
+          <h3>Contact Showcase Section</h3>
+          <p>
+            A simple and clear contact layout that helps people reach out by email, phone, or
+            location details.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's Connect</h2>
+      </div>
+      <div class="card contact-card">
+        <p>
+          If you would like to connect, collaborate, or know more about me, feel free to reach
+          out anytime.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:kaushik2007.aila@gmail.com">kaushik2007.aila@gmail.com</a>
+          <a href="tel:9391134136">9391134136</a>
+          <span>Boduppal, Medchal-Malkajgiri, Telangana</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
