@@ -9,16 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f7f0e8;
-      --bg-accent: #e5d2bd;
-      --surface: rgba(255, 252, 247, 0.82);
-      --surface-strong: #fffaf4;
-      --text: #1d1a18;
-      --muted: #5f5750;
-      --primary: #b24c2f;
-      --primary-dark: #8e3a22;
-      --border: rgba(29, 26, 24, 0.1);
-      --shadow: 0 20px 45px rgba(73, 43, 23, 0.12);
+      --bg: #e6e1dd;
+      --surface: #fbf8f5;
+      --surface-strong: #fff8e8;
+      --text: #232020;
+      --muted: #655f58;
+      --primary: #f5b300;
+      --accent: #242424;
+      --border: rgba(36, 36, 36, 0.12);
+      --shadow: 0 32px 48px rgba(36, 36, 36, 0.08);
     }
 
     * {
@@ -33,11 +32,7 @@
       margin: 0;
       font-family: "DM Sans", sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(178, 76, 47, 0.18), transparent 28%),
-        radial-gradient(circle at right, rgba(96, 123, 104, 0.16), transparent 25%),
-        linear-gradient(180deg, var(--bg), #fdf8f3);
-      line-height: 1.6;
+      background: linear-gradient(180deg, #f1eeeb 0%, #ded6cd 100%);
     }
 
     a {
@@ -45,240 +40,375 @@
       text-decoration: none;
     }
 
-    .hero {
-      min-height: 100vh;
-      padding: 28px 6vw 48px;
+    .page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 32px 5vw 80px;
     }
 
     .navbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 72px;
-    }
-
-    .logo,
-    h1,
-    h2,
-    h3 {
-      font-family: "Space Grotesk", sans-serif;
+      align-items: center;
+      gap: 24px;
+      padding-bottom: 24px;
     }
 
     .logo {
-      font-size: 1.3rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.2rem;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
+      gap: 22px;
       flex-wrap: wrap;
-      gap: 18px;
-    }
-
-    .nav-links a {
       color: var(--muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    .hero-content {
-      max-width: 760px;
-      padding: 48px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: var(--surface);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      animation: rise 0.8s ease-out both;
+    .nav-links a:hover {
+      color: var(--accent);
     }
 
-    .eyebrow {
-      margin: 0 0 12px;
-      color: var(--primary);
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      min-height: calc(100vh - 88px);
+      position: relative;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(245, 179, 0, 0.16), transparent 24%),
+                  radial-gradient(circle at bottom right, rgba(36, 36, 36, 0.08), transparent 32%);
+      pointer-events: none;
+    }
+
+    .hero-left,
+    .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .hero-label span {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.75rem;
+    }
+
+    .hero-title {
+      margin: 18px 0 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(5rem, 10vw, 8.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero-title strong {
+      display: block;
       font-weight: 700;
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      line-height: 0.95;
-    }
-
-    .intro {
-      max-width: 620px;
-      margin: 24px 0 0;
-      font-size: 1.1rem;
+    .hero-copy {
+      margin: 28px 0 0;
+      max-width: 520px;
       color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
     }
 
-    .hero-actions {
+    .hero-meta {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      align-items: center;
+      gap: 12px;
       margin-top: 28px;
     }
 
-    .button {
+    .hero-meta span {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .primary {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .secondary {
-      border: 1px solid var(--border);
-      background: var(--surface-strong);
-    }
-
-    main {
-      padding: 0 6vw 72px;
-    }
-
-    .section {
-      margin-top: 44px;
-    }
-
-    .section-heading {
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-    }
-
-    .card,
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       background: var(--surface);
       box-shadow: var(--shadow);
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
     }
 
-    .card {
-      padding: 28px;
-    }
-
-    .details-grid,
-    .skills-grid,
-    .projects-grid {
-      display: grid;
-      gap: 20px;
-    }
-
-    .details-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .skills-grid,
-    .projects-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    .card h3,
-    .project-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.25rem;
-    }
-
-    .card p,
-    .project-card p {
+    .hero-meta p {
       margin: 0;
-      color: var(--muted);
-    }
-
-    .project-card {
-      padding: 28px;
-      background: linear-gradient(180deg, rgba(255, 250, 244, 0.95), rgba(244, 231, 219, 0.88));
-    }
-
-    .tag {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(178, 76, 47, 0.12);
-      color: var(--primary);
-      font-size: 0.8rem;
+      color: var(--accent);
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      font-size: 0.95rem;
     }
 
-    .contact-card {
+    .portrait-card {
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      border-radius: 34px;
+      padding: 26px;
+      background: linear-gradient(180deg, rgba(245, 179, 0, 0.18), rgba(245, 179, 0, 0.02));
+      box-shadow: var(--shadow);
       display: grid;
+      place-items: center;
+    }
+
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      width: 180px;
+      height: 180px;
+      border-radius: 28px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      z-index: -1;
+    }
+
+    .portrait {
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      border-radius: 32px;
+      background: linear-gradient(180deg, #dcd2c6, #f7f2eb);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .section {
+      margin-top: 60px;
+      display: grid;
+      gap: 42px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.95fr;
+      gap: 32px;
+    }
+
+    .card,
+    .table-card,
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card {
+      padding: 32px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .eyebrow-sm {
+      margin: 0;
+      color: var(--primary);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .text-block {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .info-panel {
+      display: grid;
+      gap: 18px;
+      padding: 28px;
+    }
+
+    .info-panel h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item {
+      display: grid;
+      gap: 4px;
+      color: var(--muted);
+    }
+
+    .info-item a,
+    .info-item span {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .table-card {
+      display: grid;
+      gap: 24px;
+      padding: 32px;
+    }
+
+    .table-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .table-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .table-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .contact-links {
+    .table-card .icon-box {
+      background: var(--primary);
+      border-radius: 30px;
+      color: #141414;
+      padding: 28px 16px;
       display: grid;
-      gap: 10px;
-      font-weight: 500;
+      gap: 16px;
+      text-align: center;
+      justify-items: center;
+      transition: transform 0.2s ease;
     }
 
-    .contact-links a:hover,
-    .nav-links a:hover {
-      color: var(--primary);
+    .table-card .icon-box:hover {
+      transform: translateY(-4px);
     }
 
-    @keyframes rise {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .icon-box span {
+      font-size: 2rem;
     }
 
-    @media (max-width: 640px) {
+    .icon-box p {
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .content-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .content-item {
+      background: var(--surface-strong);
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .content-item h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .content-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1080px) {
       .hero {
-        padding-top: 20px;
+        grid-template-columns: 1fr;
+        min-height: auto;
       }
 
-      .navbar {
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .table-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 24px 5vw 60px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.4rem, 17vw, 5.8rem);
+      }
+
+      .table-grid,
+      .content-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
         flex-direction: column;
         align-items: flex-start;
-        margin-bottom: 42px;
-      }
-
-      .hero-content,
-      .card,
-      .project-card {
-        padding: 22px;
-      }
-
-      h1 {
-        line-height: 1;
       }
     }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <nav class="navbar">
+  <div class="page">
+    <header class="navbar">
       <div class="logo">Koushik</div>
       <div class="nav-links">
         <a href="about.html">About</a>
@@ -286,123 +416,77 @@
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
       </div>
-    </nav>
+    </header>
 
-    <div class="hero-content">
-      <p class="eyebrow">Portfolio</p>
-      <h1>Hello, I'm Koushik.</h1>
-      <p class="intro">
-        I am an enthusiastic learner building my path in technology, design, and creative
-        problem-solving. I enjoy growing my skills and creating projects that make an impact.
-      </p>
-      <div class="hero-actions">
-        <a class="button primary" href="#contact">Connect With Me</a>
-        <a class="button secondary" href="mailto:kaushik2007.aila@gmail.com">Email Me</a>
-      </div>
-    </div>
-  </header>
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-label"><span>01</span>Creative Visual</div>
+          <h1 class="hero-title"><strong>PORTO</strong>FOLIO.</h1>
+          <p class="hero-copy">I’m Koushik, a self-taught web creator who builds bold portfolio pages with strong visual storytelling, modern layouts, and polished contact information.</p>
+          <div class="hero-meta">
+            <span>→</span>
+            <p>Koushik</p>
+          </div>
+        </div>
 
-  <main>
-    <section class="section" id="about">
-      <div class="section-heading">
-        <p class="eyebrow">About Me</p>
-        <h2>Personal Details</h2>
-      </div>
-      <div class="card details-grid">
-        <div>
-          <h3>Name</h3>
-          <p>Koushik</p>
+        <div class="hero-right">
+          <div class="portrait-card">
+            <div class="portrait">Your photo or artwork goes here</div>
+          </div>
         </div>
-        <div>
-          <h3>Email</h3>
-          <p><a href="mailto:kaushik2007.aila@gmail.com">kaushik2007.aila@gmail.com</a></p>
-        </div>
-        <div>
-          <h3>Phone</h3>
-          <p><a href="tel:9391134136">9391134136</a></p>
-        </div>
-        <div>
-          <h3>Address</h3>
-          <p>Boduppal, Medchal-Malkajgiri, Telangana</p>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section" id="skills">
-      <div class="section-heading">
-        <p class="eyebrow">Skills</p>
-        <h2>What I Bring</h2>
-      </div>
-      <div class="skills-grid">
-        <article class="card">
-          <h3>Frontend Basics</h3>
-          <p>HTML, CSS, responsive layouts, and building clean user interfaces.</p>
-        </article>
-        <article class="card">
-          <h3>Creative Thinking</h3>
-          <p>Designing ideas clearly and turning concepts into practical project structures.</p>
-        </article>
-        <article class="card">
-          <h3>Communication</h3>
-          <p>Collaborating with others, learning quickly, and presenting work with confidence.</p>
-        </article>
-        <article class="card">
-          <h3>Problem Solving</h3>
-          <p>Approaching challenges step by step and staying consistent while learning.</p>
-        </article>
-      </div>
-    </section>
+      <section class="section">
+        <div class="section-grid">
+          <div class="card">
+            <p class="eyebrow-sm">About</p>
+            <h2 class="section-title">Hello.</h2>
+            <p class="text-block">I enjoy crafting visual web projects that don’t just look good — they tell a story. I’m building better layouts, modern identity systems, and thoughtful pages that help people understand who I am and what I do.</p>
+            <div class="content-row">
+              <div class="content-item">
+                <h3>Education</h3>
+                <p>Informatics Engineering</p>
+              </div>
+              <div class="content-item">
+                <h3>Working Experience</h3>
+                <p>Creating portfolio pages, visual layouts, and content-driven websites while learning design systems and responsive UI.</p>
+              </div>
+            </div>
+          </div>
 
-    <section class="section" id="projects">
-      <div class="section-heading">
-        <p class="eyebrow">Projects</p>
-        <h2>Featured Work</h2>
-      </div>
-      <div class="projects-grid">
-        <article class="project-card">
-          <span class="tag">Project 01</span>
-          <h3>Personal Portfolio Website</h3>
-          <p>
-            A portfolio website to introduce myself, share my skills, and make it easy for
-            others to connect with me.
-          </p>
-        </article>
-        <article class="project-card">
-          <span class="tag">Project 02</span>
-          <h3>Student Learning Page</h3>
-          <p>
-            A concept page designed to highlight learning goals, subjects, and future
-            achievements in a modern way.
-          </p>
-        </article>
-        <article class="project-card">
-          <span class="tag">Project 03</span>
-          <h3>Contact Showcase Section</h3>
-          <p>
-            A simple and clear contact layout that helps people reach out by email, phone, or
-            location details.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="section-heading">
-        <p class="eyebrow">Contact</p>
-        <h2>Let's Connect</h2>
-      </div>
-      <div class="card contact-card">
-        <p>
-          If you would like to connect, collaborate, or know more about me, feel free to reach
-          out anytime.
-        </p>
-        <div class="contact-links">
-          <a href="mailto:kaushik2007.aila@gmail.com">kaushik2007.aila@gmail.com</a>
-          <a href="tel:9391134136">9391134136</a>
-          <span>Boduppal, Medchal-Malkajgiri, Telangana</span>
+          <div class="info-card">
+            <div class="info-panel">
+              <h3>Let's Work Together :</h3>
+              <div class="info-list">
+                <div class="info-item"><strong>Email</strong><a href="mailto:kaushik2007.aila@gmail.com">kaushik2007.aila@gmail.com</a></div>
+                <div class="info-item"><strong>Phone</strong><a href="tel:9391134136">+91 93911 34136</a></div>
+                <div class="info-item"><strong>Name</strong><span>Koushik</span></div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
+
+      <section class="section">
+        <div class="table-card">
+          <div class="table-head">
+            <div>
+              <p class="eyebrow-sm">Table Of Content</p>
+              <h3>Explore my services.</h3>
+            </div>
+            <div>→</div>
+          </div>
+
+          <div class="table-grid">
+            <div class="icon-box"><span>✏️</span><p>Graphic Design</p></div>
+            <div class="icon-box"><span>📷</span><p>Photographer</p></div>
+            <div class="icon-box"><span>🎥</span><p>Videographer</p></div>
+            <div class="icon-box"><span>🎞️</span><p>Video & Photo Editor</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
